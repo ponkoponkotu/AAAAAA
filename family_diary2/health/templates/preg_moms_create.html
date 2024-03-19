@@ -1,0 +1,26 @@
+{% extends "registration_base.html" %}
+{% load static %}
+
+{% block title %}妊婦検診一覧 | Moms Health{% endblock %}
+
+{% block contents %}
+<div class="container my-3">
+    <h2 class="text-center my-3">妊婦検診</h2>
+
+    {% load django_bootstrap5 %}
+
+    <div class="container my-3" style="max-width:700px">
+        <form method="POST" enctype='multipart/form-data'>
+
+            {% csrf_token %}
+
+            <table class="table">
+
+            {{ form.as_table}}
+
+            </table>
+            <input class="form-control btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}

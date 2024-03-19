@@ -1,0 +1,35 @@
+{% extends "registration_base.html" %}
+
+{% load static %}
+
+{% block title %}検診結果詳細{% endblock %}
+
+{% block contents %}
+
+<div class="container my-3">
+    <div class="card my-3">
+        <div class="card-body">
+
+            <div class="post-preview">
+                <ul>
+                    <li>検診日:{{ object.my_date}}</li>
+                    <li>妊娠:{{ object.pregnancy_week}} 週</li>
+                    <li>体重:{{ object.weight}} kg</li>
+                    <li>血圧:{{ object.blood_pressure_top}}／{{ object.blood_pressure_bottom}} mmHg</li>
+                    <li>腹囲:{{ object.waist}} cm</li>
+                    <li>子宮底長:{{ object.fundall_length}}</li>
+                    <li>浮腫:{{ object.edema}}</li>
+                    <li>尿蛋白:{{ object.unrine_protein}}</li>
+                    <li>糖尿:{{ object.diabetes}}</li>
+                    <li>その他検査・特記事項など:{{ object.other_test}}</li>
+                </ul>
+            </div>
+
+            <a href="{% url 'health:preg_moms_update' object.pk %}" class="btn btn-secondary ms-3" tabindex="-1" role="button" aria-disabled="true">編集</a>
+            <a href="{% url 'health:preg_moms_delete' object.pk %}" class="btn btn-danger ms-3" tabindex="-1" role="button" aria-disabled="true">削除</a>
+            <a href="{% url 'health:preg_moms_list' %}" class="btn btn-primary ms-3" tabindex="-1" role="button" aria-disabled="true">キャンセル</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

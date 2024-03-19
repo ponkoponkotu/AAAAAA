@@ -1,0 +1,52 @@
+{% extends "registration_base.html" %}
+{% load static %}
+
+
+{% block title %}日記一覧 | Family Diary{% endblock %}
+
+{% block active_diary_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+<header class="masthead text-center text-black">
+    <div class="masthead content">
+        <div class="container">
+            <h2 class="masthead-subheading mb-0">日記一覧</h2>
+
+        </div>
+    </div>
+</header>
+{% endblock %}
+{% block contents %}
+
+<div class="container px-4 px-lg-5 my-div-style">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="d-flex justify-content-end mb-4">
+                <a class="btn btn-primary float-right" href="{% url 'diary:diary_create' %}">新規作成</a>
+            </div>
+            {% for object in object_list %}
+            <div class="post-preview">
+                <a href="{% url 'diary:diary_detail' object.pk %}">
+                    <h3 class="post-title">
+                        {{ object.title }}
+                    </h3>
+                    <h5 class="post-subtitle">
+                        {{ object.content|truncatechars:20 }}
+                    </h5>
+                    <p >{{ object.create_at }}</p>
+                </a>
+            </div>
+            <hr class="my-4">
+            {% empty %}
+            <p>日記がありません。</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

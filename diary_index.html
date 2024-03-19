@@ -1,0 +1,82 @@
+{% extends "registration_base.html" %}
+{% load static %}
+
+{% block title %}Web上にあなたとあなたの新しい家族の日記を保存出来る|Family Diary{% endblock %}
+
+
+
+{% block header %}
+<header class="masthead text-center text-black">
+    <div class="masthead content">
+        <div class="conteiner">
+            <h1 class="masthead-heading mb-0">Family Diary</h1>
+            <h2 class="masthead-subheading mb-0">あなたと新しく迎える家族の記録を残そう</h2>
+
+
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+{% endblock %}
+
+{% block contents %}
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-2">
+        <div class="p-5">
+          <img class="img-fluid rounded-circle" src="{% static 'assets/img/01.jpg' %}" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <div class="p-5">
+          <h2 class="display-4">Web Diary</h2>
+          <p>あなたと子供の記録をWeb上で作成/保存/編集/削除ができる日記</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="p-5">
+          <img class="img-fluid rounded-circle" src="{% static 'assets/img/02.jpg' %}" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="p-5">
+          <h2 class="display-4">Save Your Inspection Results</h2>
+          <p>簡単に見返せるように検診結果を記録しよう</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-2">
+        <div class="p-5">
+          <img class="img-fluid rounded-circle" src="{% static 'assets/img/03.jpg' %}" alt="">
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <div class="p-5">
+          <h2 class="display-4">Membership System</h2>
+          <p>会員制のWeb日記サービス</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+

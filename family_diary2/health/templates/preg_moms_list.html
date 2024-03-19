@@ -1,0 +1,49 @@
+{% extends "registration_base.html" %}
+{% load static %}
+
+{% block title %}妊婦検診結果一覧 | PREGNANT MOMS HEALTH LIST{% endblock %}
+
+{% block active_preg_moms_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+<header class="masthead text-center text-black">
+    <div class="masthead content">
+        <div class="container">
+            <h2 class="masthead-subheading mb-0">妊婦検診 結果一覧</h2>
+
+        </div>
+    </div>
+</header>
+{% endblock %}
+{% block contents %}
+
+<div class="container px-4 px-lg-5 my-div-style">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="d-flex justify-content-end mb-4">
+                <a class="btn btn-primary float-right" href="{% url 'health:preg_moms_create' %}">新しい検診結果を作成</a>
+            </div>
+            {% for object in pregnantmomshealth_list %}
+            <div class="post-preview">
+                <a href="{% url 'health:preg_moms_detail' object.pk %}">
+                    <h3 class="post-title">
+                        妊娠{{ object.pregnancy_week }}週
+                    </h3>
+                    <p class="post-subtitle">
+                        検診日:{{ object.my_date }}
+                    </p>
+                </a>
+            </div>
+            <hr class="my-4">
+            {% empty %}
+            <p>検診結果がありません。</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

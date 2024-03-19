@@ -1,0 +1,71 @@
+<!doctype HTML>
+<html>
+    <head>
+        <meta lang="ja">
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %}{% endblock %}</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Family Diary</a>
+            {% if user.is_authenticated %}
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link {% block active_diary_list %}{% endblock %}"
+                           href="{% url 'diary:diary_list' %}">日記</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="nav-item"><a class="nav-link {% block active_moms_info_list %}{% endblock %}"
+                           href="">母親の情報</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% block active_preg_moms_list %}{% endblock %}"
+                           href="{% url 'health:preg_moms_list' %}">妊娠中</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link {% block active_post_moms_list %}{% endblock %}" href="">産後</a></li>
+                </ul>
+                <ul>
+                    <li class="nav-item"><a class="nav-link {% block active_baby_imfo %}{% endblock %}" href="">子の情報</a></li>
+                    <li class="nav-item"><a class="nav-link {% block active_new_babys_list %}{% endblock %}" href="">新生児期</a></li>
+                    <li class="nav-item"><a class="nav-link {% block active_infa_babys_list %}{% endblock %}" href="">乳幼児期</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                    <ul class="nav-item">
+                    <li><a href="{% url 'logout' %}">ログアウト</a></li>
+                    <li><a href="{% url 'password_change' %}">パスワードの変更</a></li>
+                    <li><a href="{% url 'password_reset' %}">パスワードを忘れた場合</a></li>
+                    </ul>
+                    {% else %}
+                    <div class="navbar-brand">
+                    <p>会員登録がお済の方はログインをして会員ページにお進みください。</p>
+                    <p>会員登録がお済でない方は、サインアップから新規会員登録をお願いします。</p>
+                    </div>
+                    {% endif %}
+                </ul>
+        </nav>
+        <div class="container mt-4">
+        {% block header %}{% endblock %}
+        {% block main %}
+
+        {% endblock %}
+        </div>
+     {% block contents %} {% endblock %}
+
+    <footer class="py-5 bg-black">
+        <div class="container px-5"><p class="m-0 text-center text-white small">Copyrigth &copy;Family Diary 2023</p>
+        </div>
+    </footer>
+    </body>
+</html>

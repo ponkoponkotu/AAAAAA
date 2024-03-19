@@ -1,0 +1,22 @@
+{% extends "registration_base.html" %}
+
+{% block title %}Search{% endblock title %}
+
+{% block contents %}
+<div class="container mt-3">
+    <h2 class="mt-5">Search</h2>
+    <form class="w-50" method="GET" action="{% url 'diary:diary_search' %}">
+        <p><input class="form-control" type="text" name="title" value="{{ title }}" placeholder="キーワード入力"></p>
+        <p><input class="btn btn-secondary" type="submit" value="検索"></p>
+    </form>
+
+    {% for object in object_list %}
+        <div class="card my-3">
+            <div class="card-body">
+                <h5 class="card-title">タイトル: <a href="{% url 'diary:diary_detail' object.id %}">{{object.title}}</a></h5>
+                <p class="card-text">{{object.content|truncatechars_html:20|linebreaksbr}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
